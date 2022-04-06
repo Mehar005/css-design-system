@@ -1,0 +1,16 @@
+@function hslac($color, $alpha) {
+  @if (type-of($color) == "color") {
+    @return hsla(hue($color), saturation($color), lightness($color), $alpha);
+  } @else {
+    @error "You didn't pass a color object";
+  }
+}
+
+//this is the "magic" function
+@function var($variable) {
+  @if ($css4) {
+    @return unquote("var(" + $variable + ")");
+  } @else {
+    @return map-get($variables, $variable);
+  }
+}

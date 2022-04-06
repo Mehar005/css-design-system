@@ -1,0 +1,153 @@
+@import "./functions";
+@import "./variables.scss";
+/* ----------------------------------- */
+/* Custom Properties in sass           */
+/* ----------------------------------- */
+$css4: true;
+$compatibility: true;
+
+//it is nessesary to define the variables in sass map instead of :root, for compatibility reasons.
+$variables: (
+  --clr-dark: hsl(230, 35%, 7%),
+  --clr-light: (
+    231,
+    77%,
+    90%,
+  ),
+  --clr-white: 0 0% 100%,
+  --gap: 1rem,
+);
+
+//Here we transfer the variables from the map to the :root element
+@if ($css4) {
+  :root {
+    @each $variable, $value in $variables {
+      #{$variable}: $value;
+    }
+  }
+}
+
+
+/* ----------------------------------- */
+/* Reset                               */
+/* ----------------------------------- */
+
+/* Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+picture {
+  margin: 0 !important;
+}
+
+/* Setup body */
+body {
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* make pictures easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  /* by default they don't inherit font size */
+  font: inherit;
+}
+
+/* Remove animations for people who turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ----------------------------------- */
+/* Utility Classes                     */
+/* ----------------------------------- */
+
+.flex {
+  display: flex;
+  gap: var(--gap);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap);
+}
+
+.container {
+  padding-inline: 2em;
+  max-width: 80rem;
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.box {
+  padding: 1rem;
+  background-color: lightblue;
+}
+
+/* ----------------------------------- */
+/* Colors                              */
+/* ----------------------------------- */
+
+.bg-dark {
+  background-color: hslac($color-dark, 1);
+}
+.bg-light {
+  background-color: hslac($color-light, 1);
+
+}
+.bg-white {
+  background-color: hslac($color-white, 1);
+
+}
+
+.text-dark {
+  background-color: hslac($color-dark, 1);
+
+}
+.text-light {
+  background-color: hslac($color-light, 1);
+
+}
+.text-white {
+  background-color: hslac($color-white, 1);
+
+}
